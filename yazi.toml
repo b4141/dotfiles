@@ -1,0 +1,10 @@
+# [opener]
+# zathura = [
+# 	{ run = 'zathura "$@"', desc = "Zathura", block = true, for = "unix" }
+# ]
+
+# [open]
+# rules = [
+# 	{ mime = "application/pdf", use = [ "zathura", "reveal" ] },
+# 	{ url = '^.*\.pdf$',        use = [ "zathura", "reveal" ] }
+# ]

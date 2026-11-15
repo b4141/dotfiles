@@ -1,0 +1,235 @@
+[language-server.jinja-lsp]
+command = "jinja-lsp"
+config = { templates = "./templates", backend = ["./src"], lang = "rust"}
+timeout = 5
+
+[[language]]
+name = "jinja"
+language-servers = ["jinja-lsp"]
+
+[[language]]
+name = "html"
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = true
+
+[[language]]
+name = "json"
+formatter = { command = 'prettier', args = ["--parser", "json"] }
+
+[[language]]
+name = "css"
+formatter = { command = 'prettier', args = ["--parser", "css"] }
+
+[[language]]
+name = "javascript"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "typescript"
+formatter = { command = 'prettier', args = ["--parser", "typescript", "--printWidith", "100"] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+formatter = { command = 'prettier', args = ["--stdin-filename", "file.tsx"] }
+auto-format = true
+
+[[language]]
+name = "c"
+formatter = { command = "clang-format", args = ["--sort-includes=0"] }
+
+[[language]]
+name = "cpp"
+formatter = { command = "clang-format", args = ["--sort-includes=0"] }
+
+# [[language]]
+# name = "python"
+# auto-format = false
+# [language.formatter]
+# command = "black"
+# args = ["-", "--quiet", "--line-length=79"]
+
+
+# [[language]]
+# name = "svelte"
+# auto-format = true
+# formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-svelte", "--stdin", "--parser", "svelte"] }
+
+
+
+# [[language]]
+# name = "svelte"
+# auto-format = true
+# # formatter = { command = "prettier", args = ["--stdin-filepath", ""] }
+# formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-svelte", "--stdin", "--parser", "svelte"] }
+# # comment-token = "//"
+# # block-comment-tokens = {start = "<!--", end = "-->"}
+
+# [[language]]
+# name = "svelte"
+# language-servers = [ "svelteserver", "tailwindcss-ls" ]
+# auto-format = true
+
+
+[[language]]
+name = "svelte"
+auto-format = true
+language-servers = ["svelteserver", "tailwindcss-ls"]
+formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-svelte", "--stdin", "--parser", "svelte"] }
+
+[language-server.svelteserver]
+command = "svelteserver"
+args = ["--stdio"]
+
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+
+
+
+
+
+
+
+# [[language]]
+# name = "latex"
+# scope = "source.tex"
+# injection-regex = "tex"
+# file-types = ["tex"]
+# roots = []
+# comment-token = "%"
+# # language-server = { command = "texlab" }
+# # config = { texlab = { build = { onSave = true } } }
+# indent = { tab-width = 4, unit = "\t" }
+
+# [[language]]
+# name = "latex"
+# language-servers = [ "texlab" ]
+
+# [language-server.texlab]
+# command = "texlab"
+
+
+
+# [[language]]
+# name = "latex"
+# scope = "source.tex"
+# injection-regex = "tex"
+# file-types = ["tex"]
+# roots = []
+# comment-token = "%"
+# language-server = { command = "texlab" }
+# config = { texlab = { build = { onSave = true } } }
+# indent = { tab-width = 4, unit = "\t" }
+
+
+
+# [[language]]
+# name = "latex"
+# file-types = ["tex"]
+# language-servers = ["texlab"]
+
+
+
+
+[[language]]
+name = "latex"
+file-types = ["tex"]
+language-servers = ["texlab"]
+
+[language-server.texlab]
+command = "texlab"
+
+[language-server.texlab.config.texlab.build]
+executable = "latexmk"
+args = ["-pdf", "-interaction=nonstopmode", "-synctex=1", "%f"]
+onSave = true
+
+
+# [[language]]
+# name = "go"
+# language-servers = ["gopls"]
+# formatter = { command = "goimports" }
+
+# [language-server.gopls]
+# command = "gopls"
+
+# [language-server.gopls.config]
+# gofumpt = true
+# analyses = { unusedparams = true }
+# staticcheck = true
+
+
+# [language-server.gopls]
+# command = "gopls"
+
+# [[language]]
+# name = "go"
+# language-servers = ["gopls"]
+# formatter = { command = "goimports" }
+
+
+
+
+
+[[language]]
+name = "typescript"
+shebangs = ["deno"]
+roots = ["deno.json", "deno.jsonc"]
+file-types = ["js", "ts", "jsx", "tsx"]
+language-servers = ["deno-lsp", "tailwindcss-ls"]
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
+
+[language-server.astro-ls]
+command = "astro-ls"
+args = [ "--stdio" ]
+
+[[language]]
+name = "astro"
+scope = "source.astro"
+injection-regex = "astro"
+file-types = ["astro"]
+roots = ["package.json", "astro.config.mjs"]
+language-servers = [ "astro-ls", "tailwindcss-ls" ]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "astro"] }
+
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+auto-format = true
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+auto-format = true
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+
+[[language]]
+name = "tsx"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+auto-format = true
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+auto-format = true
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+
+[[language]]
+name = "json"
+auto-format = false
+formatter = { command = 'npx', args = ["prettier", "--parser", "json"] }

@@ -1,0 +1,230 @@
+#___the_Alt_key
+set $mod Mod1
+#___the_Win_key
+# set $mod Mod4
+
+#___setting_variables_________
+#___set_wallpaper_var
+# set $wallpaper /usr/share/backgrounds/mountain_clouds_wallpaper_1920x1080.jpg
+# set $wallpaper /usr/share/backgrounds/pluto_wallpaper_1920x1080.jpg
+set $wallpaper /usr/share/backgrounds/RedMoon_362x807.jpg
+
+#___Colors_set_From_~/.Xresources
+set_from_resource $background	background
+set_from_resource $foreground	foreground
+set_from_resource $color0	color0	#000000
+set_from_resource $color1	color1	#000000
+set_from_resource $color2	color2	#000000
+set_from_resource $color3	color3	#000000
+set_from_resource $color4	color4	#000000
+set_from_resource $color5	color5	#000000
+set_from_resource $color6	color6	#000000
+set_from_resource $color7	color7	#000000
+set_from_resource $color8	color8	#000000
+set_from_resource $color9	color9	#000000
+set_from_resource $color10	color10	#000000
+set_from_resource $color11	color11	#000000
+set_from_resource $color12	color12	#000000
+set_from_resource $color13	color13	#000000
+set_from_resource $color14	color14	#000000
+set_from_resource $color15	color15	#000000
+#___Use_custom_colors_for_black
+set $black       #000000
+set $darkblack   #1d2021
+set $transparent #00000000
+
+#___SETTING_COLORS_________
+#___WINDOW_COLORS_______BORDER______BACKGROUND__TEXT________INDICATOR___CHILD_BORDER 
+client.focused			$color8     $foreground $background $color3     $color8
+client.unfocused		$color8		$background $foreground $color8     $color8
+client.focused_inactive	$color8	    $background $foreground $foreground $color8
+client.urgent			$foreground	$color1     $foreground $background $background
+client.placeholder		$foreground	$background $foreground $background $background
+
+#___Font_for_window_titles__Will_also_be_used_by_the_bar_unless_a_different_font
+#___is_used_in_the_bar_{}_block_below
+font pango:Hack Nerd Font Mono 8
+#font pango:DejaVu Sans Mono 8
+
+#___GENERAL_CONFIG_________
+#___Start_XDG_autostart_desktop_files_using_dex_See_also
+#___https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+#___The_combination_of_xss-lock,_nm-applet_and_pactl_is_a_popular_choice,_so
+#___they_are_included_here_as_an_example._Modify_as_you_see_fit.
+#___xss-lock_grabs_a_logind_suspend_inhibit_lock_and_will_use_i3lock_to_lock_the
+#___screen_before_suspend._Use_loginctl_lock-session_to_lock_your_screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#___NetworkManager_is_the_most_popular_way_to_manage_wireless_networks_on_Linux,
+#___and_nm-applet_is_a_desktop_environment-independent_system_tray_GUI_for_it.
+exec --no-startup-id nm-applet
+#___Use_pactl_to_adjust_volume_in_PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+#___Use_Mouse+$mod_to_drag_floating_windows_to_their_wanted_position
+floating_modifier $mod
+
+#___move_tiling_windows_via_drag_&_drop_by_left-clicking_into_the_title_bar,
+#___or_left-clicking_anywhere_into_the_window_while_holding_the_floating_modifier.
+#___tiling_drag_modifier_titlebar
+
+#___KEYBINDING_________
+#___start_a_terminal
+bindsym $mod+Return exec i3-sensible-terminal
+#___kill_focused_window
+bindsym $mod+q kill
+#___start_dmenu__a_program_launcher
+#bindsym $mod+d exec --no-startup-id dmenu_run
+# bindsym $mod+d exec dmenu_run -nb '$background' -sf '$color3' -sb '$color1' -nf '$color1' 
+bindsym $mod+d exec dmenu_run
+#___change_focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+#___alternatively_you_can_use_the_cursor_keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+#___move_focused_window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+#___alternatively,_you_can_use_the_cursor_keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+#___split_in_horizontal_orientation
+bindsym $mod+g split h
+#___split_in_vertical_orientation
+bindsym $mod+v split v
+#___enter_fullscreen_mode_for_the_focused_container
+bindsym $mod+f fullscreen toggle
+#___change_container_layout__stacked_tabbed_toggle_split
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+#___toggle__tiling_floating
+bindsym $mod+Shift+space floating toggle
+
+#___change_focus_between__tiling__floating_windows
+bindsym $mod+space focus mode_toggle
+
+#___focus_the_parent_container
+bindsym $mod+a focus parent
+
+#___define_names_for_default_workspaces_for_which_we_configure_key_bindings_later_on
+#___use_variables_to_avoid_repeating_the_names_in_multiple_places
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+#___switch_to_workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+#___move_focused_container_to_workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+#___reload_the_configuration_file
+bindsym $mod+Shift+c reload
+#___restart_i3_inplace__preserves_your_layout/session,_can_be_used_to_upgrade_i3
+#bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec --no-startup-id sh -c "xrdb -merge ~/.Xresources && i3-msg restart"
+#___exit_i3__logs_you_out_of_your_X_session
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#___resize_window__you_can_also_use_the_mouse_for_that
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+	#___same_bindings_but_for_the_arrow_keys
+    bindsym Left resize shrink width 5 px or 1 ppt
+    bindsym Down resize grow height 5 px or 1 ppt
+    bindsym Up resize shrink height 5 px or 1 ppt
+    bindsym Right resize grow width 5 px or 1 ppt
+	#___back_to_normal__Enter_or_Escape_or_$mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#___Start_i3bar_to_display_a_workspace_bar_(plus_the_system_information_i3status
+#___finds_out__if_available)
+bar{
+    status_command i3status
+	colors{
+		statusline	$foreground
+		background	$background
+		separator	$foreground
+		focused_workspace	$foreground	$background	$foreground
+		inactive_workspace	$background	$background	$foreground
+		active_workspace	$background	$background	$foreground
+		urgent_workspace	$color3		$color3		$background
+		binding_mode		$color3		$color3		$background
+	}
+}
+#___desktop_background_or_wallpaper_________
+# exec xsetroot -solid "#c99081"
+# exec feh --bg-scale /usr/share/backgrounds/mountain_clouds_wallpaper_1920x1080.jpg
+# exec feh --bg-scale $wallpaper
+exec feh --bg-center $wallpaper
+
+#___i3_Gaps_________
+gaps inner 0
+gaps outer 0
+smart_gaps on
+
+#___app_lunch_key_binds_________
+bindsym Ctrl+space exec "sh ~/.config/rofi/launchers/type-2/launcher.sh"
+bindsym $mod+Ctrl+space exec "sh ~/.config/rofi/launchers/type-1/launcher.sh"
+
+#___language_setting_________
+#___mode_f1_for_eng
+bindcode $mod+67 exec "setxkbmap us"
+#___mode_f2_for_ar
+bindcode $mod+68 exec "setxkbmap ara"
+
+
+#___screen_capture_________
+#___Capture_full_screen_and_save_to_Pictures
+bindsym Print exec --no-startup-id maim ~/Pictures/$(date +%F-%T).png
+
+#___Select_a_region_or_window_and_save_to_Pictures
+bindsym Shift+Print exec --no-startup-id maim -s ~/Pictures/$(date +%F-%T).png
+
+#___Select_a_region_and_copy_directly_to_clipboard_(requires_xclip)
+bindsym $mod+Shift+s exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+

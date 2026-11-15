@@ -1,0 +1,66 @@
+"ui.menu" = { fg = "black", bg = "white" }
+"ui.menu.selected" = { modifiers = ["reversed"] }
+"ui.linenr" = { fg = "gray_2", bg = "black" }
+"ui.linenr.selected" = { fg = "gray_1", bg = "black", modifiers = ["bold"] }
+"ui.popup" = { modifiers = ["reversed"] }
+"ui.selection" = { fg = "black", bg = "blue" }
+"ui.selection.primary" = { fg = "white", bg = "blue" }
+"ui.text.inactive" = { fg = "gray" }
+"comment" = { fg = "string_number" }
+"ui.statusline" = { fg = "black", bg = "gray_2" }
+"ui.statusline.inactive" = { fg = "gray", bg = "white" }
+"ui.cursor" = { fg = "white", modifiers = ["reversed"] }
+"variable" = "blue"
+"constant.numeric" = "string_number"
+"constant" = "gray_1"
+"attributes" = "gray_1"
+"type" = "gray_1"
+"ui.cursor.match" = { fg = "gray_1", modifiers = ["underlined"] }
+"string"  = "string_number"
+"variable.other.member" = "gray_1"
+"constant.character.escape" = "white"
+"function" = "main"
+"constructor" = "main"
+"special" = "blue"
+"keyword" = "white"
+"label" = "white"
+"namespace" = "white"
+"ui.help" = { fg = "white", bg = "black" }
+
+"markup.heading" = "blue"
+"markup.list" = "main"
+"markup.bold" = { fg = "gray_1", modifiers = ["bold"] }
+"markup.italic" = { fg = "white", modifiers = ["italic"] }
+"markup.link.url" = { fg = "gray_1", modifiers = ["underlined"] }
+"markup.link.text" = "main"
+"markup.quote" = "white"
+"markup.raw" = "gray_1"
+
+"diff.plus" = "gray_1"
+"diff.delta" = "gray_1"
+"diff.minus" = "main"
+
+"diagnostic" = { modifiers = ["underlined"] }
+"ui.gutter" = { bg = "black" }
+"info" = "blue"
+"hint" = "gray"
+"debug" = "gray"
+"warning" = "gray_1"
+"error" = "main"
+
+
+"ui.bufferline" = { fg = "white", bg = "black" }
+"ui.bufferline.active" = { fg = "white", bg = "gray_2" }
+
+
+
+[palette]
+white = "#ffffff"
+black = "#000000"
+# main = "#e44142"
+main = "#00ff00"
+string_number = "#7d9fa2"
+gray_1 = "#eeeeee"
+gray_2 = "#666666"
+
+
